@@ -1,0 +1,183 @@
+
+
+docker cp .Temp\data\dataSuperstorePurchases2010.csv 6b9a3e12a3f4:/tmp
+
+docker cp .Temp\ny\2005_sales_brooklyn_05.csv 6b9a3e12a3f4:/tmp
+
+ docker exec -it 6b9a3e12a3f4 bash
+
+    9  ls /tmp/*csv
+   10  hadoop fs -ls /
+   11  hadoop fs -mkdir /root
+   12  hadoop fs -ls /
+   13  hadoop fs -mkdir /root/inclass
+   14  hadoop fs -mkdir /root/inclass/input
+   15  hadoop fs -ls /root/inclass
+   16  hadoop fs -put /tmp/dataSuperstorePurchases2010.csv /root/inclass/input
+   17  hadoop fs -ls /root/inclass/input
+   18  hadoop fs -put /tmp/dataSuperstoreSales2010.csv /root/inclass/input
+   19  hadoop fs -ls /root/inclass/input
+  
+
+   21  cd ~
+   22  pwd
+   23  mkdir inclass
+   24  cd inclass/
+   25  pwd
+   26  nano MapIt.java
+   27  nano ReduceIt.java
+   28  nano MapReduceIt.java
+   29  ls
+   30  hadoop com.sun.tools.javac.Main *.java
+   31  ls
+   32  jar cf mri.jar *.class
+   33  ls
+   34  cd /usr/local/hadoop 
+  
+   42  bin/hadoop jar /root/inclass/mri.jar MapReduceIt  /root/inclass/input /root/inclass/output
+   43  hadoop fs -ls /root/inclass/output
+   44  hadoop fs -cat  /root/inclass/output/part-r-00000
+
+
+   45  cd ~
+   46  history > history_for_print.txt
+
+
+bl  //for hive
+
+describe inclass.sales;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ls /tmp/*csv
+    2  hadoop fs -ls/
+    3  hadoop fs -ls /
+    4  hadoop fs -mkdir /root
+    5  hadoop fs -ls /
+    6  hadoop fs -mkdir /root/inclass
+    7  hadoop fs -mkdir /root/inclass/input
+    8  hadoop fs -ls /root/inclass
+    9  hadoop fs -put /tmp/datasuperstorepurchases2010.csv /root/inclass/input
+   10  hadoop fs -put /tmp/DataSuperStorepurchases2010.csv /root/inclass/input
+   11  hadoop fs -put /tmp/DataSuperStorePurchases2010.csv /root/inclass/input
+   12  hadoop fs -put /tmp/dataSuperstorePurchases2010.csv /root/inclass/input
+   13  hadoop fs -ls /root/inclass/input
+   14  hadoop fs -put /tmp/datasuperstoreSales2010.csv /root/inclass/input
+   15  hadoop fs -ls /root/inclass/input
+   16  hadoop fs -put /tmp/datasuperstoreSales2010.csv /root/inclass/input
+   17  hadoop fs -put /tmp/dataSuperstoreSales2010.csv /root/inclass/input
+   18  hadoop fs -ls /root/inclass/input
+   19  PWD
+   20  pwd
+   21  cd ~
+   22  pwd
+   23  cd inclass/
+   24  cd root/inclass
+   25  cd root/inclass/
+   26  cd inclass
+   27  cd root/inclass/
+   28  mkdir inclass
+   29  cd inclass/
+   30  pwd
+   31  nano MapIt.java
+   32  nano ReduceIt.java
+   33  nano MapReduceIt.java
+   34  ls
+   35  hadoop com.sun.tools.javac.Main *.java
+   36  ls
+   37  jar cf mri.jar *.class
+   38  ls
+   39  cd /usr/local/hadoop
+   40  bin/hadoop jar /root/inclass/mri.jar MapReduceIt  /root/inclass/input /root/inclass/output
+   41  hadoop fs -ls /root/inclass/output
+   42  hadoop fs -cat  /root/inclass/output/part-r-00000
+   43  /ls
+   44  ls
+
+
+   45  cd /root
+   46  ls
+   47  cd inclass/
+   48  pwd
+   49  ls
+   50  nano runit.sh
+   51  rm runit.sh
+   52  nano runit.sh
+   53  chmod a+x runit.sh
+   54  ls -la
+   55  apt-get install dos2unix
+   56  dos2unix runit.sh
+   57  hadoop fs -ls /root/inclass/input
+   58  hadoop fs -mkdir /root/inclass/sales
+   59  hadoop fs -mkdir /root/inclass/sales/input
+   60  hadoop fs -put /tmp/dataSuperstoreSales2010.csv /root/inclass/sales/input
+   61  hadoop fs -ls /root/inclass/sales/input
+   62  hadoop fs -mkdir /root/inclass/purchases
+   63  hadoop fs -mkdir /root/inclass/purchases/input
+   64  hadoop fs -put /tmp/dataSuperstorePurchases2010.csv /root/inclass/purchases/input
+   65  hadoop fs -ls /root/inclass/purchases/input
+   66  hadoop fs -ls /root/inclass/sales/input
+   67  hadoop fs -ls /root/inclass/input
+   68  ls /tmp/*csv
+   69  hadoop fs -ls /root/inclass/input
+   70  ls
+
+
+
+   71  nano runit.sh
+   72  ./runit.sh
+   73  nano /tmp/result.txt
+   74  nano MapIt.java
+   75  ./runit.sh
+   76  nano MapIt.java
+   77  ./runit.sh
+   78  nano MapIt.java
+   79  ./runit.sh
+   80  nano /tmp/result.txt
+   81*  history_for_print.txt
+   82  ./runit.sh
+   83  LS
+   84  ls
+   85  nano MapReduceIt.java
+   86  bl
+   87  nano MapIt.java
+   88  history
+
+
+
+
+
+
+
+
+CREATE TABLE prop_sales(borough INT,neighborhood VARCHAR(100),building_class_category VARCHAR(100),block INT,lot INT,address VARCHAR(100),zipcode INT,residential_units INT,commercial_units INT,land_squarefeet INT,gross_sqaurefeet INT,tax_class INT,building_class VARCHAR(20),sale_price INT,sale_date TIMESTAMP,count VARCHAR(50)) ROW FORMAT DELIMITED FIELDS TERMINATED BY ','STORED AS TEXTFILE;
+
+
+load data local inpath '/tmp/result.txt' overwrite into table prop_sales; 
+
+
+
+
+
+
+CREATE TABLE prop_sales(borough INT,neighborhood VARCHAR(100),building_class_category VARCHAR(100),block INT,lot INT,address VARCHAR(100),zipcode INT,residential_units INT,commercial_units INT,land_squarefeet INT,gross_sqaurefeet INT,tax_class INT,building_class VARCHAR(20),sale_price INT,sale_date TIMESTAMP,count VARCHAR(50)) ROW FORMAT DELIMITED FIELDS TERMINATED BY ','STORED AS TEXTFILE;
+
